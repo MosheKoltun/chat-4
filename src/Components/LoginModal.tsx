@@ -1,6 +1,5 @@
 import * as React from 'react';
 import './LoginModal.css';
-import * as ChatStateStore from '../StateStore/stateStore';
 
 class LoginModal extends React.Component {
 
@@ -33,10 +32,8 @@ class LoginModal extends React.Component {
                     alert("Incorrect username and password!");
                     return;
                 }
-                //if authentication is successful then update stateStore about username
-                console.log(this.state.username)
-                ChatStateStore.setAuthenticationSucceedFlag();
-                ChatStateStore.setUsername(this.state.username);
+                //if authentication is successful
+
                 //close modal
                 this.modalRef['current'].style.display = "none";
 

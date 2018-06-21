@@ -21,6 +21,8 @@ class TreeBar extends React.Component {
             })
             .then((myJson)=>{
                 ChatTree(this.ulRef['current']).load(myJson);
+                console.log("this.ulRef = " + this.ulRef);
+                console.log("this.ulRef.value = " + this.ulRef.current.value);
             });
     };
 

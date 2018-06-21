@@ -1,7 +1,3 @@
-//import {appService, stateStore} from "./stateStore";
-import {Events} from "../events";
-
-
 export default
 function ChatTree(element) {
     //flags 
@@ -299,6 +295,7 @@ function ChatTree(element) {
         //set dataToggle attribute as "expanded" on li only in case it was really expanded
         if (res) {
             currentNode.dataset.dataToggle = "expanded";
+
         }
     }
     //---------------------------------------------------------
@@ -323,11 +320,18 @@ function ChatTree(element) {
         }
     }
     //=========================================================
+    // returnCurrentNodeName
+    //=========================================================
+    function returnCurrentNodeName() {
+        return currentNode.innerText;
+    }
+    //=========================================================
     // return from 'ChatTree' function 
     //=========================================================
     return {
         load,
         clear,
+        returnCurrentNodeName,
         element,
     };
 }
