@@ -266,7 +266,6 @@ function ChatTree(element) {
                 collapse();
                 break;
             case 'Enter':
-                stateStore.selectedGroup = currentNode.innerText;
                 expandOrCollapse();
                 break;
         }
