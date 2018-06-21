@@ -20,10 +20,17 @@ class TreeBar extends React.Component {
                 return response.json();
             })
             .then((myJson)=>{
-                ChatTree(this.ulRef['current']).load(myJson);
-                console.log("this.ulRef = " + this.ulRef);
-                console.log("this.ulRef.value = " + this.ulRef.current.value);
+                const chatTree =  ChatTree(this.ulRef['current']);
+                chatTree.on('currentChanged', this.onCurrentChanged);
+                chatTree.load(myJson);
+
+                //console.log("this.ulRef = " + this.ulRef);
+                //console.log("this.ulRef.value = " + this.ulRef.current.value);
             });
+    };
+
+    onCurrentChanged = (currentElement: any)=> {
+        console.log(currentElement.innerText)
     };
 
     public render() {

@@ -1,5 +1,9 @@
+import Events from "../Events";
+
 export default
 function ChatTree(element) {
+    let events = Events();
+
     //flags 
     let loadWasFiredFlag = false;
 
@@ -27,6 +31,9 @@ function ChatTree(element) {
         allListItems =  element.childNodes;
         cursorIndex = 0;
         currentNode = allListItems[cursorIndex];
+
+        events.emit('currentChanged', [currentNode]);
+
         currentNode.style.backgroundColor = "aqua";
         //set flag
         loadWasFiredFlag = true;
@@ -232,6 +239,7 @@ function ChatTree(element) {
             }
             //update current node according to index
             currentNode = allListItems[cursorIndex];
+            events.emit('currentChanged', [currentNode]);
             currentNode.style.backgroundColor = "aqua";
         }
     }
@@ -272,6 +280,7 @@ function ChatTree(element) {
         currentNode.style.backgroundColor = "antiquewhite";
         cursorIndex++;
         currentNode = allListItems[cursorIndex];
+        events.emit('currentChanged', [currentNode]);
         currentNode.style.backgroundColor = "aqua";
     }
     //---------------------------------------------------------
@@ -283,6 +292,7 @@ function ChatTree(element) {
         currentNode.style.backgroundColor = "antiquewhite";
         cursorIndex--;
         currentNode = allListItems[cursorIndex];
+        events.emit('currentChanged', [currentNode]);
         currentNode.style.backgroundColor = "aqua";
     }
     //---------------------------------------------------------
@@ -324,15 +334,21 @@ function ChatTree(element) {
     //=========================================================
     function returnCurrentNodeName() {
         return currentNode.innerText;
-    }
+}
     //=========================================================
-    // return from 'ChatTree' function 
+    // return from 'ChatTree' function
     //=========================================================
+
+    const on = events.on;
+    const off = events.off;
+
     return {
         load,
         clear,
-        returnCurrentNodeName,
+        // returnCurrentNodeName,
         element,
+        on,
+        off
     };
 }
 
