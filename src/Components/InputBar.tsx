@@ -4,7 +4,7 @@ import * as App from '../App';
 import ChatTree from '../Logic/chat-tree'
 
 interface IInputProps {
-    addNewMessageCallBack: Function;
+    addNewMessageInputCallBack: Function;
 }
 
 class InputBar extends React.Component <IInputProps,{}>{
@@ -17,15 +17,8 @@ class InputBar extends React.Component <IInputProps,{}>{
     }
 
     handleAddMsg = () => {
-
         const message = this.inputRef.current.value;
-        console.log("value = " + message);
-        this.props.addNewMessageCallBack(message);
-        // let myMsgDB = stateStore.messageDB;
-        // if (myMsgDB[stateStore.selectedGroup]) {
-        //     myMsgDB[stateStore.selectedGroup].push('something');
-        // }
-        // console.log(myMsgDB[stateStore.selectedGroup]);
+        this.props.addNewMessageInputCallBack(message);
     };
 
     public render() {

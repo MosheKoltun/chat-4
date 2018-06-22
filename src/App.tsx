@@ -12,17 +12,31 @@ import ChatTree from "./Logic/chat-tree";
 
 class App extends React.Component {
     //class properties
-    private db: { [key: string]: string[] } = {};
+    //private db : { [key: string]: string[] };
+    private db = {};
 
     constructor(props: any) {
         super(props);
+        this.state = {
+            currentGroup : "",
+        }
     }
 
-    public addNewMessage(message : string, time : number) {
-        const groupName = ChatTree().returnCurrentNodeName();
-        this.db[groupName].push(message);
-        console.log(this.db);
-    }
+    public updateCurrentTreeElement = (currentElement : string) => {
+        this.setState({currentGroup : currentElement});
+    };
+
+    public addNewMessage = (message : string) => {
+        const currentElement = this.state['currentGroup'];
+        //console.log("currentElement = " + currentElement);
+        //console.log(message);
+        if (!this.db[currentElement]) {
+            this.db[currentElement]=[];
+        }
+        this.db[currentElement].push(message);
+        console.log(this.db)
+    };
+
 
     public render() {
         return (
@@ -30,12 +44,12 @@ class App extends React.Component {
                 <LoginModal/>
                 <div className={"window"}>
                     <div className={"left"}>
-                      <TreeBar/>
+                      <TreeBar updateCurrentTreeElementCallBack={this.updateCurrentTreeElement}/>
                     </div>
 
                     <div className={"right"}>
                         <MessageBar/>
-                        <InputBar addNewMessageCallBack={this.addNewMessage}/>
+                        <InputBar addNewMessageInputCallBack={this.addNewMessage}/>
                     </div>
                 </div>
             </>

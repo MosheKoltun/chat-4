@@ -329,12 +329,6 @@ function ChatTree(element) {
         }
     }
     //=========================================================
-    // returnCurrentNodeName
-    //=========================================================
-    function returnCurrentNodeName() {
-        return currentNode.innerText;
-}
-    //=========================================================
     // return from 'ChatTree' function
     //=========================================================
 
@@ -344,7 +338,6 @@ function ChatTree(element) {
     return {
         load,
         clear,
-        // returnCurrentNodeName,
         element,
         on,
         off

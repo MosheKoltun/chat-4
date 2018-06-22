@@ -2,7 +2,11 @@ import * as React from 'react';
 import ChatTree from '../Logic/chat-tree'
 import './TreeBar.css';
 
-class TreeBar extends React.Component {
+interface ITreeProps {
+    updateCurrentTreeElementCallBack : Function;
+}
+
+class TreeBar extends React.Component <ITreeProps, {}>{
     private ulRef : React.RefObject<any>;
 
     constructor(props:any) {
@@ -23,14 +27,12 @@ class TreeBar extends React.Component {
                 const chatTree =  ChatTree(this.ulRef['current']);
                 chatTree.on('currentChanged', this.onCurrentChanged);
                 chatTree.load(myJson);
-
-                //console.log("this.ulRef = " + this.ulRef);
-                //console.log("this.ulRef.value = " + this.ulRef.current.value);
             });
     };
 
     onCurrentChanged = (currentElement: any)=> {
-        console.log(currentElement.innerText)
+        this.props.updateCurrentTreeElementCallBack(currentElement.innerText);
+        //console.log(currentElement.innerText)
     };
 
     public render() {
