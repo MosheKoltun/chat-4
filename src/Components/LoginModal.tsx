@@ -1,7 +1,11 @@
 import * as React from 'react';
 import './LoginModal.css';
 
-class LoginModal extends React.Component {
+interface ILoginModalProps {
+    updateUserLoggedInCallBack: Function;
+}
+
+class LoginModal extends React.Component <ILoginModalProps, {}> {
 
     private modalRef : React.RefObject<any>;
 
@@ -33,10 +37,10 @@ class LoginModal extends React.Component {
                     return;
                 }
                 //if authentication is successful
-
                 //close modal
                 this.modalRef['current'].style.display = "none";
-
+                //update 'App' component about username
+                this.props.updateUserLoggedInCallBack(this.state.username)
             });
     };
 

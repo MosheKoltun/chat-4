@@ -1,12 +1,17 @@
 import * as React from 'react';
 import './Bubble.css';
 
-class Bubble extends React.Component {
+export interface IbubbleTextProps {
+    bubbleText: string;
+}
+
+export class Bubble extends React.Component <IbubbleTextProps,{}>{
     public render() {
         return (
-            <pre className={"speech-bubble"}>Hello World!</pre>
+            <span className={"speech-bubble"}>{this.props.bubbleText}</span>
         );
     }
 }
 
-export default Bubble;
+
+//export default Bubble;

@@ -18,7 +18,13 @@ class InputBar extends React.Component <IInputProps,{}>{
 
     handleAddMsg = () => {
         const message = this.inputRef.current.value;
-        this.props.addNewMessageInputCallBack(message);
+        const today = new Date();
+        const dd = today.getDate();
+        const yyyy = today.getFullYear();
+        const mm = today.getMonth() + 1;
+        const formattedTime = today.toLocaleTimeString();
+        const formattedTimeAndDate = formattedTime + " " + dd + "/" + mm + "/" + yyyy;
+        this.props.addNewMessageInputCallBack(message, formattedTimeAndDate);
     };
 
     public render() {

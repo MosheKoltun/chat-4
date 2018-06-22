@@ -1,54 +1,57 @@
 import * as React from 'react';
 import './App.css';
-
 import InputBar from './Components/InputBar';
 import MessageBar from './Components/MessageBar';
 import TreeBar from "./Components/TreeBar";
 import LoginModal from "./Components/LoginModal";
-import {Group} from "./Modules/group";
-import ChatTree from "./Logic/chat-tree";
 
-
-
+//-------------------------------------------------------------------
 class App extends React.Component {
     //class properties
-    //private db : { [key: string]: string[] };
     private db = {};
 
+//-------------------------------------------------------------------
     constructor(props: any) {
         super(props);
         this.state = {
-            currentGroup : "",
+            userLoggedIn : "",
+            currentUserOrGroup : "",
+            currentMessage : "",
         }
     }
-
+//-------------------------------------------------------------------
     public updateCurrentTreeElement = (currentElement : string) => {
-        this.setState({currentGroup : currentElement});
+        this.setState({currentUserOrGroup : currentElement});
     };
-
-    public addNewMessage = (message : string) => {
-        const currentElement = this.state['currentGroup'];
-        //console.log("currentElement = " + currentElement);
-        //console.log(message);
-        if (!this.db[currentElement]) {
-            this.db[currentElement]=[];
+//-------------------------------------------------------------------
+    public updateUserLoggedIn = (userLoggedIn : string) => {
+        this.setState({userLoggedIn : userLoggedIn});
+    };
+//-------------------------------------------------------------------
+    public addNewMessage = (message : string, formattedDate : string) => {
+        //set state of message
+        this.setState({currentMessage : message});
+        //update mock DB
+        const currentUserOrGroup = this.state['currentUserOrGroup'];
+        if (!this.db[currentUserOrGroup]) {
+            this.db[currentUserOrGroup]=[];
         }
-        this.db[currentElement].push(message);
+        this.db[currentUserOrGroup].push({username: this.state['userLoggedIn'], message: message, time: formattedDate});
         console.log(this.db)
+        //update bubble
     };
-
-
+//-------------------------------------------------------------------
     public render() {
         return (
             <>
-                <LoginModal/>
+                <LoginModal updateUserLoggedInCallBack={this.updateUserLoggedIn}/>
                 <div className={"window"}>
                     <div className={"left"}>
                       <TreeBar updateCurrentTreeElementCallBack={this.updateCurrentTreeElement}/>
                     </div>
 
                     <div className={"right"}>
-                        <MessageBar/>
+                        <MessageBar bubbleText={this.state['currentMessage']}/>
                         <InputBar addNewMessageInputCallBack={this.addNewMessage}/>
                     </div>
                 </div>
@@ -56,5 +59,5 @@ class App extends React.Component {
         );
       }
 }
-
+//-------------------------------------------------------------------
 export default App;
