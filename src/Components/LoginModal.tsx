@@ -12,7 +12,7 @@ class LoginModal extends React.Component <ILoginModalProps, {}> {
     state = {
         //hardcoded for development purposes
         //in production need to make values empty
-        username: "Ori",
+        username: "Yehuda",
         password: "1234"
     };
 

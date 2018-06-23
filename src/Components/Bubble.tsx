@@ -12,6 +12,3 @@ export class Bubble extends React.Component <IbubbleTextProps,{}>{
         );
     }
 }
-
-
-//export default Bubble;

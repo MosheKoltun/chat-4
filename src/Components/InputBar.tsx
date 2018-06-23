@@ -1,7 +1,5 @@
 import * as React from 'react';
 import './InputBar.css';
-import * as App from '../App';
-import ChatTree from '../Logic/chat-tree'
 
 interface IInputProps {
     addNewMessageInputCallBack: Function;
@@ -18,14 +16,15 @@ class InputBar extends React.Component <IInputProps,{}>{
 
     handleAddMsg = () => {
         const message = this.inputRef.current.value;
-        const today = new Date();
-        const dd = today.getDate();
-        const yyyy = today.getFullYear();
-        const mm = today.getMonth() + 1;
-        const formattedTime = today.toLocaleTimeString();
-        const formattedTimeAndDate = formattedTime + " " + dd + "/" + mm + "/" + yyyy;
-        this.props.addNewMessageInputCallBack(message, formattedTimeAndDate);
+        const currentTimeAndDate = this.getTimeAndDate();
+        this.props.addNewMessageInputCallBack(message, currentTimeAndDate);
     };
+
+    getTimeAndDate = () => {
+        const today = new Date();
+        const formattedTime = today.toLocaleTimeString();
+        return (formattedTime + " " + today.getDate() + "/" + (today.getMonth() + 1) + "/" + today.getFullYear());
+    }
 
     public render() {
         return (

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './App.css';
 import InputBar from './Components/InputBar';
-import MessageBar from './Components/MessageBar';
+import {MessageBar} from './Components/MessageBar';
 import TreeBar from "./Components/TreeBar";
 import LoginModal from "./Components/LoginModal";
 
@@ -47,7 +47,7 @@ class App extends React.Component {
                 <LoginModal updateUserLoggedInCallBack={this.updateUserLoggedIn}/>
                 <div className={"window"}>
                     <div className={"left"}>
-                      <TreeBar updateCurrentTreeElementCallBack={this.updateCurrentTreeElement}/>
+                        <TreeBar updateCurrentTreeElementCallBack={this.updateCurrentTreeElement}/>
                     </div>
 
                     <div className={"right"}>
@@ -57,7 +57,7 @@ class App extends React.Component {
                 </div>
             </>
         );
-      }
+    }
 }
 //-------------------------------------------------------------------
 export default App;
