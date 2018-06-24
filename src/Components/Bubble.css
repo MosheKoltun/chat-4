@@ -1,5 +1,8 @@
+
 .speech-bubble {
+    /*display: block;*/
     float: right;
+    clear: both;
     width: fit-content;
     position: relative;
     background: yellow;

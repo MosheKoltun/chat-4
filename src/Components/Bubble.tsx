@@ -3,6 +3,7 @@ import './Bubble.css';
 
 export interface IbubbleTextProps {
     bubbleText: string;
+    key: number;
 }
 
 export class Bubble extends React.Component <IbubbleTextProps,{}>{

@@ -6,7 +6,7 @@ import TreeBar from "./Components/TreeBar";
 import LoginModal from "./Components/LoginModal";
 
 //-------------------------------------------------------------------
-class App extends React.Component {
+class App extends React.Component<any, any> {
     //class properties
     private db = {};
 
@@ -42,6 +42,7 @@ class App extends React.Component {
     };
 //-------------------------------------------------------------------
     public render() {
+        console.log(this.db[this.state.currentUserOrGroup]);
         return (
             <>
                 <LoginModal updateUserLoggedInCallBack={this.updateUserLoggedIn}/>
@@ -51,7 +52,7 @@ class App extends React.Component {
                     </div>
 
                     <div className={"right"}>
-                        <MessageBar bubbleText={this.state['currentMessage']}/>
+                        <MessageBar messagesDB={this.db[this.state.currentUserOrGroup]}/>
                         <InputBar addNewMessageInputCallBack={this.addNewMessage}/>
                     </div>
                 </div>
