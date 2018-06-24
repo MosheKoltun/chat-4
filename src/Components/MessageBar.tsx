@@ -7,7 +7,7 @@ export class MessageBar extends React.Component<IbubbleTextProps,{}> {
     public render() {
         return (
             <div className={"messageBar"}>
-                <Bubble bubbleText={this.props.bubbleText}/>
+                {(this.props.bubbleText !== "")?(<Bubble bubbleText={this.props.bubbleText}/>):null}
             </div>
         );
     }
